@@ -16,12 +16,14 @@ import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
+import android.content.Intent;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.catapplication.MainActivity;
 import com.example.catapplication.R;
 import com.example.catapplication.ui.login.LoginViewModel;
 import com.example.catapplication.ui.login.LoginViewModelFactory;
@@ -46,6 +48,8 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         loginViewModel = ViewModelProviders.of(this, new LoginViewModelFactory())
                 .get(LoginViewModel.class);
+
+
 
         final EditText usernameEditText = findViewById(R.id.username);
         final EditText passwordEditText = findViewById(R.id.password);
@@ -122,9 +126,11 @@ public class LoginActivity extends AppCompatActivity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                loadingProgressBar.setVisibility(View.VISIBLE);
-                loginViewModel.login(usernameEditText.getText().toString(),
-                        passwordEditText.getText().toString());
+                Intent intent = new Intent(getApplication(), MainActivity.class);  //インテントの作成
+                startActivity(intent);
+//                loadingProgressBar.setVisibility(View.VISIBLE);
+//                loginViewModel.login(usernameEditText.getText().toString(),
+//                        passwordEditText.getText().toString());
             }
         });
     }
